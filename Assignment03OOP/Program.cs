@@ -12,7 +12,8 @@ namespace Assignment03OOP
         Guest,
         Developer,
         Security,
-        DBA
+        DBA,
+        SecurityOfficer
     }
     public class Employee
     {
@@ -102,11 +103,22 @@ namespace Assignment03OOP
     }
     #endregion
     internal class Program
+    {
+        static void Main(string[] args)
         {
-            static void Main(string[] args)
+            #region Q3
+            Employee[] EmpArr = new Employee[3];
+            EmpArr[0] = new Employee('F', 1, "Sondos", 60000.00m, new HiringDate(12, 5, 2018), SecurityPrivileges.DBA);
+            EmpArr[1] = new Employee('F', 2, "Aya", 30000.00m, new HiringDate(3, 11, 2020), SecurityPrivileges.Guest);
+            EmpArr[2] = new Employee('M', 3, "Ahmed", 80000.00m, new HiringDate(20, 7, 2015), SecurityPrivileges.SecurityOfficer);
+
+            foreach (var emp in EmpArr)
             {
+                Console.WriteLine(emp.ToString());
 
             }
+            #endregion
         }
     }
+}
 
