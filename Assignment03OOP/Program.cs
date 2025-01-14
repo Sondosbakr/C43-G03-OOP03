@@ -18,13 +18,25 @@ namespace Assignment03OOP
     {
         #region Attributes
         private char gender;
+        private decimal salary;
         #endregion
 
         #region Property
         public int ID { get; set; }
         public string Name { get; set; }
-        public decimal Salary { get; set; }
-        public HiringDate HireDate;
+        public decimal Salary 
+        {
+            get { return salary; }
+            set
+            {
+                if (value >= 0)
+                    salary = value;
+                else
+                    Console.WriteLine("Salary can not be negative");
+
+            } 
+        }
+        public HiringDate HireDate { get; set; }
         public SecurityPrivileges SecurityLevel { get; set; }
         public char Gender
         {
