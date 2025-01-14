@@ -25,7 +25,7 @@ namespace Assignment03OOP
         #region Property
         public int ID { get; set; }
         public string Name { get; set; }
-        public decimal Salary 
+        public decimal Salary
         {
             get { return salary; }
             set
@@ -35,7 +35,7 @@ namespace Assignment03OOP
                 else
                     Console.WriteLine("Salary can not be negative");
 
-            } 
+            }
         }
         public HiringDate HireDate { get; set; }
         public SecurityPrivileges SecurityLevel { get; set; }
@@ -102,23 +102,84 @@ namespace Assignment03OOP
         #endregion
     }
     #endregion
-    internal class Program
+
+    #region Q5
+    public class Book
     {
-        static void Main(string[] args)
+        #region Properties
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public string ISBN { get; set; }
+        #endregion
+
+        public Book(string title, string author, string isbn)
         {
-            #region Q3
-            Employee[] EmpArr = new Employee[3];
-            EmpArr[0] = new Employee('F', 1, "Sondos", 60000.00m, new HiringDate(12, 5, 2018), SecurityPrivileges.DBA);
-            EmpArr[1] = new Employee('F', 2, "Aya", 30000.00m, new HiringDate(3, 11, 2020), SecurityPrivileges.Guest);
-            EmpArr[2] = new Employee('M', 3, "Ahmed", 80000.00m, new HiringDate(20, 7, 2015), SecurityPrivileges.SecurityOfficer);
+            Title = title;
+            Author = author;
+            ISBN = isbn;
+        }
 
-            foreach (var emp in EmpArr)
-            {
-                Console.WriteLine(emp.ToString());
-
-            }
-            #endregion
+        public override string ToString()
+        {
+            return $"Title {Title}, Author {Author}, ISBN {ISBN}";
         }
     }
-}
+
+        public class EBook : Book
+        {
+            public int FileSize { get; set; }
+
+            public EBook(string title, string author, string isbn, int fileSize) : base(title, author, isbn)
+            {
+                FileSize = fileSize;
+            }
+            public override string ToString()
+            {
+                return $"{base.ToString()}, FileSize {FileSize}";
+            }
+        }
+
+        public class PrintedBook : Book
+        {
+            public int PageCount { get; set; }
+
+            public PrintedBook(string title, string author, string isbn, int pagecount) : base(title, author, isbn)
+            {
+                PageCount = pagecount;
+            }
+            public override string ToString()
+            {
+                return $"{base.ToString()}, PageCount {PageCount}";
+            }
+        }
+        #endregion
+
+        internal class Program
+        {
+            static void Main(string[] args)
+            {
+                #region Q3
+                //Employee[] EmpArr = new Employee[3];
+                //EmpArr[0] = new Employee('F', 1, "Sondos", 60000.00m, new HiringDate(12, 5, 2018), SecurityPrivileges.DBA);
+                //EmpArr[1] = new Employee('F', 2, "Aya", 30000.00m, new HiringDate(3, 11, 2020), SecurityPrivileges.Guest);
+                //EmpArr[2] = new Employee('M', 3, "Ahmed", 80000.00m, new HiringDate(20, 7, 2015), SecurityPrivileges.SecurityOfficer);
+
+                //foreach (var emp in EmpArr)
+                //{
+                //    Console.WriteLine(emp.ToString());
+
+                //}
+                #endregion
+
+                #region Q5
+                EBook ebook = new EBook("Ebook Title", "Ebook Author", "1234", 10);
+                PrintedBook printedbook = new PrintedBook("Ebook Title", "Ebook Aythor", "5678", 300);
+
+                Console.WriteLine(ebook.ToString());
+                Console.WriteLine(printedbook.ToString());
+                #endregion
+            }
+        }
+    }
+
 
